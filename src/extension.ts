@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import { typeOfColor } from './utils/typeOfColor';
 import { isValidColor } from './utils/isValidColor';
+import { translatedColor } from './utils/translatedColor';
+import { colorTypes } from './utils/colorTypes';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -29,20 +31,18 @@ export function activate(context: vscode.ExtensionContext) {
 
 			vscode.window.showQuickPick(
 				[
-					'bar',
-					'foo'
+					translatedColor(text, colorType, colorTypes.hex6),
+					translatedColor(text, colorType, colorTypes.hex8),
+					translatedColor(text, colorType, colorTypes.rgb),
+					translatedColor(text, colorType, colorTypes.rgba),
+					translatedColor(text, colorType, colorTypes.hsl),
+					translatedColor(text, colorType, colorTypes.hsla),
 		  	]
 			).then(qpSelection => {
-
-
 				editor.edit(editBuilder => {
 					editBuilder.replace(selection, qpSelection as string);
 				});
-
-				vscode.window.showInformationMessage(qpSelection as string);
 			});
-
-
 		}
 	});
 

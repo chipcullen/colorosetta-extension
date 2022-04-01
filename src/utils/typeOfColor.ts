@@ -1,5 +1,5 @@
 import { colorTypes } from './colorTypes';
-import { lowerCaseNamedColors } from "./namedColors";
+// import { lowerCaseNamedColors } from "./namedColors";
 
 const typeOfColor = (color: string): colorTypes => {
   switch (true) {
@@ -26,8 +26,8 @@ const typeOfColor = (color: string): colorTypes => {
 
     // converting user input to lowercase so the input
     // can be "rebeccapurple" or "RebeccaPurple"
-    case lowerCaseNamedColors.includes(color.toLowerCase()):
-      return colorTypes.named;
+    // case lowerCaseNamedColors.includes(color.toLowerCase()):
+    //   return colorTypes.named;
 
     default:
       return colorTypes.none;

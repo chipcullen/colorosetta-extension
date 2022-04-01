@@ -115,21 +115,21 @@ const rgbToRgb = (rgb: string): Array<number> => {
   return [+r, +g, +b];
 };
 
-const namedToRgb = (name: string) => {
-  // Create fake div
-  const fakeDiv = document.createElement("div");
-  fakeDiv.style.color = name;
-  document.body.appendChild(fakeDiv);
+// const namedToRgb = (name: string) => {
+//   // Create fake div
+//   const fakeDiv = document.createElement("div");
+//   fakeDiv.style.color = name;
+//   document.body.appendChild(fakeDiv);
 
-  // Get color of div
-  const cs = window.getComputedStyle(fakeDiv);
-  const pv = cs.getPropertyValue("color");
+//   // Get color of div
+//   const cs = window.getComputedStyle(fakeDiv);
+//   const pv = cs.getPropertyValue("color");
 
-  // Remove div after obtaining desired color value
-  document.body.removeChild(fakeDiv);
+//   // Remove div after obtaining desired color value
+//   document.body.removeChild(fakeDiv);
 
-  return rgbToRgb(pv);
-};
+//   return rgbToRgb(pv);
+// };
 
 const toRgb = (color: string, colorType: colorTypes): Array<number> => {
   switch (true) {
@@ -139,12 +139,12 @@ const toRgb = (color: string, colorType: colorTypes): Array<number> => {
       return rgbToRgb(color);
     case colorType === colorTypes.hsl:
       return hslToRgb(color);
-    case colorType === colorTypes.named:
-      return namedToRgb(color);
+    // case colorType === colorTypes.named:
+    //   return namedToRgb(color);
     default:
       // assume rgb to rgb
       return rgbToRgb(color);
   }
 };
 
-export { hexToRgb, hslToRgb, rgbToRgb, namedToRgb, toRgb };
+export { hexToRgb, hslToRgb, rgbToRgb, toRgb };
