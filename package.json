@@ -10,14 +10,27 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:colorosetta-extension.translateColor"
+		"onCommand:colorosetta-extension.translateColor",
+		"onCommand:colorosetta-extension.toRgb",
+		"onCommand:colorosetta-extension.toRgba"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "colorosetta-extension.translateColor",
-				"title": "Translate Color"
+				"title": "Translate Color",
+				"category": "ColoRosetta"
+			},
+			{
+				"command": "colorosetta-extension.toRgb",
+				"title": "Translate to RGB",
+				"category": "ColoRosetta"
+			},
+			{
+				"command": "colorosetta-extension.toRgba",
+				"title": "Translate to RGBa",
+				"category": "ColoRosetta"
 			}
 		]
 	},
