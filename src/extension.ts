@@ -16,6 +16,9 @@ export function activate(context: vscode.ExtensionContext) {
 			// Get the text within the selection
 			const text = document.getText(selection);
 
+			// @TODO the menu/commands in package.json now have
+			// "when": "editorHasSelection"
+			// ... I _think_ I can get rid of this check
 			if (!text) {
 				vscode.window.showErrorMessage('Make a selection first');
 				return null;
@@ -24,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const colorType = typeOfColor(text);
 
 			if (!colorType || !isValidColor(text, colorType)) {
-				vscode.window.showErrorMessage('Please input a valid color');
+				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RBGa, HSL, or HSLa');
 				return null;
 			}
 
