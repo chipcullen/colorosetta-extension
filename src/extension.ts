@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import { typeOfColor } from './utils/typeOfColor';
+import { isValidColor } from './utils/isValidColor';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -15,6 +17,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 			if (!text) {
 				vscode.window.showInformationMessage('Make a selection first');
+				return;
+			}
+
+			const colorType = typeOfColor(text);
+
+			if (!colorType || !isValidColor(text, colorType)) {
+				vscode.window.showInformationMessage('Please input a valid color');
 				return;
 			}
 
