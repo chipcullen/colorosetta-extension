@@ -66,6 +66,22 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
+	let toHex6 = vscode.commands.registerCommand('colorosetta-extension.toHex6', () => {
+		const input = getValidInput();
+
+		if (input) {
+			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.hex6));
+		}
+	});
+
+	let toHex8 = vscode.commands.registerCommand('colorosetta-extension.toHex8', () => {
+		const input = getValidInput();
+
+		if (input) {
+			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.hex8));
+		}
+	});
+
 	let toRgb = vscode.commands.registerCommand('colorosetta-extension.toRgb', () => {
 		const input = getValidInput();
 
@@ -82,7 +98,23 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(translateColor, toRgb, toRgba);
+	let toHsl = vscode.commands.registerCommand('colorosetta-extension.toHsl', () => {
+		const input = getValidInput();
+
+		if (input) {
+			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.hsl));
+		}
+	});
+
+	let toHsla = vscode.commands.registerCommand('colorosetta-extension.toHsla', () => {
+		const input = getValidInput();
+
+		if (input) {
+			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.hsla));
+		}
+	});
+
+	context.subscriptions.push(translateColor, toHex6, toHex8, toRgb, toRgba, toHsl, toHsla);
 }
 
 // this method is called when your extension is deactivated

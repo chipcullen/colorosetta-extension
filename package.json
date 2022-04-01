@@ -11,8 +11,12 @@
 	],
 	"activationEvents": [
 		"onCommand:colorosetta-extension.translateColor",
+		"onCommand:colorosetta-extension.toHex6",
+		"onCommand:colorosetta-extension.toHex8",
 		"onCommand:colorosetta-extension.toRgb",
-		"onCommand:colorosetta-extension.toRgba"
+		"onCommand:colorosetta-extension.toRgba",
+		"onCommand:colorosetta-extension.toHsl",
+		"onCommand:colorosetta-extension.toHsla"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -23,6 +27,16 @@
 				"category": "ColoRosetta"
 			},
 			{
+				"command": "colorosetta-extension.toHex6",
+				"title": "Translate to Hex",
+				"category": "ColoRosetta"
+			},
+			{
+				"command": "colorosetta-extension.toHex8",
+				"title": "Translate to Hex 8",
+				"category": "ColoRosetta"
+			},
+			{
 				"command": "colorosetta-extension.toRgb",
 				"title": "Translate to RGB",
 				"category": "ColoRosetta"
@@ -30,6 +44,16 @@
 			{
 				"command": "colorosetta-extension.toRgba",
 				"title": "Translate to RGBa",
+				"category": "ColoRosetta"
+			},
+			{
+				"command": "colorosetta-extension.toHsl",
+				"title": "Translate to HSL",
+				"category": "ColoRosetta"
+			},
+			{
+				"command": "colorosetta-extension.toHsla",
+				"title": "Translate to HSLa",
 				"category": "ColoRosetta"
 			}
 		]
