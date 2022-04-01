@@ -1,0 +1,4 @@
+const DEFAULT_COLOR = `rgba(255, 0, 0, 1)`; // red
+const ASSUMED_BACKGROUND_COLOR = [255, 255, 255]; // white
+
+export { DEFAULT_COLOR, ASSUMED_BACKGROUND_COLOR }
