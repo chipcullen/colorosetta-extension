@@ -1,6 +1,6 @@
 # ColoRosetta - the extension
 
-This VS Code extension brings the many-to-many color translations of https://colorosetta.com/ to your editor!
+This VS Code extension brings the one-to-many color translations of https://colorosetta.com/ to your editor!
 
 ## Features
 
