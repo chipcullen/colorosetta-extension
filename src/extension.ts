@@ -40,8 +40,9 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const replaceEditorText = (input: string) => {
 		const editor = vscode.window.activeTextEditor;
-
-		if (editor) {
+		// need to check for input undefined -
+		// that can happen if the user escapes from the quick pick menu
+		if (editor && input !== undefined) {
 			const selection = editor.selection;
 
 			editor.edit(editBuilder => {
@@ -53,15 +54,28 @@ export function activate(context: vscode.ExtensionContext) {
 	let translateColor = vscode.commands.registerCommand('colorosetta-extension.translateColor', () => {
 		const input = getValidInput();
 		if (input) {
+			const qpChoices = [];
+
+			for (const value in colorTypes) {
+				if (
+				// Except for `none` and `named`
+				(value !== colorTypes.none && value !== colorTypes.named)
+				&&
+				// and for not the input color space
+				(input.colorType !== value)
+				) {
+					// offer a translated choice
+					qpChoices.push(translatedColor(input.text, input.colorType, value as colorTypes));
+				}
+			}
+
+			const namedColorTranslation = translatedColor(input.text, input.colorType, colorTypes.named).toLowerCase();
+
+			// if there is a valid named conversion, push that
+			input.colorType !== colorTypes.named && namedColorTranslation ? qpChoices.push(namedColorTranslation) : ``;
+
 			vscode.window.showQuickPick(
-				[
-					translatedColor(input.text, input.colorType, colorTypes.hex6),
-					translatedColor(input.text, input.colorType, colorTypes.hex8),
-					translatedColor(input.text, input.colorType, colorTypes.rgb),
-					translatedColor(input.text, input.colorType, colorTypes.rgba),
-					translatedColor(input.text, input.colorType, colorTypes.hsl),
-					translatedColor(input.text, input.colorType, colorTypes.hsla),
-		  	]
+				qpChoices
 			).then(qpSelection => {
 				replaceEditorText(qpSelection as string);
 			});

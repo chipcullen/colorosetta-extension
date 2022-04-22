@@ -65,7 +65,6 @@ const isValidColor = (color: string, colorType: colorTypes): boolean => {
   switch (true) {
     // @todo need more robust validation of these colors
     case colorType === colorTypes.hex6 && isValidHex6(color):
-    case colorType === colorTypes.picker && isValidHex6(color):
     case colorType === colorTypes.hex8 && isValidHex8(color):
     case colorType === colorTypes.rgba && isValidRgba(color):
     case colorType === colorTypes.rgb  && isValidRgb(color):
