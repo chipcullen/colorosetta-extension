@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const colorType = typeOfColor(text);
 
 			if (!colorType || !isValidColor(text, colorType)) {
-				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RBGa, HSL, or HSLa');
+				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RBGa, HSL, HSLa, or valid named color');
 				return null;
 			}
 
@@ -52,7 +52,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let translateColor = vscode.commands.registerCommand('colorosetta-extension.translateColor', () => {
 		const input = getValidInput();
-
 		if (input) {
 			vscode.window.showQuickPick(
 				[

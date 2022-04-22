@@ -10,6 +10,6 @@ This VS Code extension brings the one-to-many color translations of https://colo
 
 ## Known Issues
 
-- No support for named colors (e.g. `rebeccaPurple`)
+- No support for translating to named colors (e.g. `rebeccaPurple`), but you can start with a named color
 
 

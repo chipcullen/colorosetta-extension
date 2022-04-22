@@ -1,4 +1,5 @@
 import { colorTypes } from './colorTypes';
+import { rgbWithNames } from './namedColors';
 
 // handles #000 or #000000
 // based on this function: https://css-tricks.com/converting-color-spaces-in-javascript/#article-header-id-3
@@ -115,21 +116,19 @@ const rgbToRgb = (rgb: string): Array<number> => {
   return [+r, +g, +b];
 };
 
-// const namedToRgb = (name: string) => {
-//   // Create fake div
-//   const fakeDiv = document.createElement("div");
-//   fakeDiv.style.color = name;
-//   document.body.appendChild(fakeDiv);
+const namedToRgb = (name: string): Array<number> => {
+  let color: Array<number> = [];
 
-//   // Get color of div
-//   const cs = window.getComputedStyle(fakeDiv);
-//   const pv = cs.getPropertyValue("color");
+  for (let index = 0; index < rgbWithNames.length; index++) {
+    const colorObj = rgbWithNames[index];
+    if (colorObj.name.toLowerCase() === name.toLowerCase()) {
+      color = colorObj.rgb;
+      break;
+    }
+  }
 
-//   // Remove div after obtaining desired color value
-//   document.body.removeChild(fakeDiv);
-
-//   return rgbToRgb(pv);
-// };
+  return color;
+};
 
 const toRgb = (color: string, colorType: colorTypes): Array<number> => {
   switch (true) {
@@ -139,12 +138,12 @@ const toRgb = (color: string, colorType: colorTypes): Array<number> => {
       return rgbToRgb(color);
     case colorType === colorTypes.hsl:
       return hslToRgb(color);
-    // case colorType === colorTypes.named:
-    //   return namedToRgb(color);
+    case colorType === colorTypes.named:
+      return namedToRgb(color);
     default:
       // assume rgb to rgb
       return rgbToRgb(color);
   }
 };
 
-export { hexToRgb, hslToRgb, rgbToRgb, toRgb };
+export { hexToRgb, hslToRgb, rgbToRgb, namedToRgb, toRgb };

@@ -1,5 +1,5 @@
 import { colorTypes } from './colorTypes';
-import { hexToRgb, rgbToRgb, hslToRgb } from './toRgb';
+import { hexToRgb, rgbToRgb, hslToRgb, namedToRgb } from './toRgb';
 import { rgbaToRgba, hex8ToRgba, hslaToRgba } from './toRgba';
 import { rgbToHex, hslToHex, rgbArrayToHex } from './toHex';
 import { rgbaToHex8, hslaToHex8 } from './toHex8';
@@ -181,26 +181,26 @@ const translatedColor = (
       }
       break;
     // Named
-    // case startingColorType === colorTypes.named:
-    //   const namedAsRgbArray = namedToRgb(color);
-    //   switch(true) {
-    //     case targetColorType === colorTypes.hex6:
-    //     case targetColorType === colorTypes.picker:
-    //       return rgbArrayToHex(namedAsRgbArray);
-    //     case targetColorType === colorTypes.hex8:
-    //       return formatHex6AsHex8(rgbArrayToHex(namedAsRgbArray));
-    //     case targetColorType === colorTypes.rgb:
-    //       return formatRgb(namedAsRgbArray);
-    //     case targetColorType === colorTypes.rgba:
-    //       return formatRgbAsRgba(namedAsRgbArray);
-    //     case targetColorType === colorTypes.hsl:
-    //       return formatHsl(rgbArrayToHsl(namedAsRgbArray));
-    //     case targetColorType === colorTypes.hsla:
-    //       return formatHslAsHsla(rgbArrayToHsl(namedAsRgbArray));
-    //     default:
-    //       break;
-    //   }
-    //   break;
+    case startingColorType === colorTypes.named:
+      const namedAsRgbArray = namedToRgb(color);
+      switch(true) {
+        case targetColorType === colorTypes.hex6:
+        case targetColorType === colorTypes.picker:
+          return rgbArrayToHex(namedAsRgbArray);
+        case targetColorType === colorTypes.hex8:
+          return formatHex6AsHex8(rgbArrayToHex(namedAsRgbArray));
+        case targetColorType === colorTypes.rgb:
+          return formatRgb(namedAsRgbArray);
+        case targetColorType === colorTypes.rgba:
+          return formatRgbAsRgba(namedAsRgbArray);
+        case targetColorType === colorTypes.hsl:
+          return formatHsl(rgbArrayToHsl(namedAsRgbArray));
+        case targetColorType === colorTypes.hsla:
+          return formatHslAsHsla(rgbArrayToHsl(namedAsRgbArray));
+        default:
+          break;
+      }
+      break;
   }
 
   return `none`;
