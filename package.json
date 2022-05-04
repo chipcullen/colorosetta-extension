@@ -16,7 +16,8 @@
 		"onCommand:colorosetta-extension.toRgb",
 		"onCommand:colorosetta-extension.toRgba",
 		"onCommand:colorosetta-extension.toHsl",
-		"onCommand:colorosetta-extension.toHsla"
+		"onCommand:colorosetta-extension.toHsla",
+		"onCommand:colorosetta-extension.toNamed"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -63,6 +64,12 @@
 					"title": "Translate to HSLa",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
+				},
+				{
+					"command": "colorosetta-extension.toNamed",
+					"title": "Translate to Named",
+					"category": "ColoRosetta",
+					"when": "editorHasSelection"
 				}
 			],
 			"editor/context": [
@@ -107,6 +114,12 @@
 					"title": "Translate to HSLa",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
+				},
+				{
+					"command": "colorosetta-extension.toNamed",
+					"title": "Translate to Named",
+					"category": "ColoRosetta",
+					"when": "editorHasSelection"
 				}
 			]
 		},
@@ -144,6 +157,11 @@
 			{
 				"command": "colorosetta-extension.toHsla",
 				"title": "Translate to HSLa",
+				"category": "🎨 ColoRosetta"
+			},
+			{
+				"command": "colorosetta-extension.toNamed",
+				"title": "Translate to Named",
 				"category": "🎨 ColoRosetta"
 			}
 		]

@@ -6,7 +6,12 @@ import { colorTypes } from './utils/colorTypes';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	const getValidInput = () => {
+	interface ColorInput {
+		text: string,
+		colorType: colorTypes,
+	};
+
+	const getValidInput = (): ColorInput | null => {
 		const editor = vscode.window.activeTextEditor;
 
 		if (editor) {
@@ -15,14 +20,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 			// Get the text within the selection
 			const text = document.getText(selection);
-
-			// @TODO the menu/commands in package.json now have
-			// "when": "editorHasSelection"
-			// ... I _think_ I can get rid of this check
-			if (!text) {
-				vscode.window.showErrorMessage('Make a selection first');
-				return null;
-			}
 
 			const colorType = typeOfColor(text);
 
@@ -36,6 +33,8 @@ export function activate(context: vscode.ExtensionContext) {
 				colorType: colorType,
 			};
 		}
+
+		return null;
 	};
 
 	const replaceEditorText = (input: string) => {
@@ -49,6 +48,10 @@ export function activate(context: vscode.ExtensionContext) {
 				editBuilder.replace(selection, input);
 			});
 		}
+	};
+
+	const namedColorTranslation = (input: ColorInput): string | null => {
+		return translatedColor(input.text, input.colorType, colorTypes.named).toLowerCase();
 	};
 
 	let translateColor = vscode.commands.registerCommand('colorosetta-extension.translateColor', () => {
@@ -69,10 +72,10 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			}
 
-			const namedColorTranslation = translatedColor(input.text, input.colorType, colorTypes.named).toLowerCase();
+			const namedColor = namedColorTranslation(input);
 
 			// if there is a valid named conversion, push that
-			input.colorType !== colorTypes.named && namedColorTranslation ? qpChoices.push(namedColorTranslation) : ``;
+			input.colorType !== colorTypes.named && namedColor ? qpChoices.push(namedColor) : ``;
 
 			vscode.window.showQuickPick(
 				qpChoices
@@ -130,7 +133,23 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(translateColor, toHex6, toHex8, toRgb, toRgba, toHsl, toHsla);
+	let toNamed = vscode.commands.registerCommand('colorosetta-extension.toNamed', () => {
+		const input = getValidInput();
+
+		if (input) {
+			const namedColor = namedColorTranslation(input);
+
+			if (namedColor) {
+				replaceEditorText(namedColor);
+			} else {
+				vscode.window.showWarningMessage(
+					'There is no matching named color'
+					);
+			}
+		}
+	});
+
+	context.subscriptions.push(translateColor, toHex6, toHex8, toRgb, toRgba, toHsl, toHsla, toNamed);
 }
 
 // this method is called when your extension is deactivated
