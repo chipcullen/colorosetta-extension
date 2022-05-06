@@ -16,7 +16,7 @@ const rgbaArrayToHex8 = (rgbaArray: Array<number>): string => {
     a = "0" + a;
 
   return "#" + r + g + b + a;
-}
+};
 
 const rgbaToHex8 = (rgba: string) => {
 
@@ -36,11 +36,10 @@ const rgbaToHex8 = (rgba: string) => {
   ];
 
   return rgbaArrayToHex8(rgbaNumArray);
-}
+};
 
 const hslaToHex8 = (hsla: string) => {
   return rgbaArrayToHex8(hslaToRgba(hsla));
-}
-
+};
 
 export { rgbaToHex8, hslaToHex8 };

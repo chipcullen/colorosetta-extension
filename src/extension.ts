@@ -2,13 +2,13 @@ import * as vscode from 'vscode';
 import { typeOfColor } from './utils/typeOfColor';
 import { isValidColor } from './utils/isValidColor';
 import { translatedColor } from './utils/translatedColor';
-import { colorTypes } from './utils/colorTypes';
+import { ColorTypes } from './utils/colorTypes';
 
 export function activate(context: vscode.ExtensionContext) {
 
 	interface ColorInput {
 		text: string,
-		colorType: colorTypes,
+		colorType: ColorTypes,
 	};
 
 	const getValidInput = (): ColorInput | null => {
@@ -51,7 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
 	};
 
 	const namedColorTranslation = (input: ColorInput): string | null => {
-		return translatedColor(input.text, input.colorType, colorTypes.named).toLowerCase();
+		return translatedColor(input.text, input.colorType, ColorTypes.named).toLowerCase();
 	};
 
 	let translateColor = vscode.commands.registerCommand('colorosetta-extension.translateColor', () => {
@@ -59,23 +59,23 @@ export function activate(context: vscode.ExtensionContext) {
 		if (input) {
 			const qpChoices = [];
 
-			for (const value in colorTypes) {
+			for (const value in ColorTypes) {
 				if (
 				// Except for `none` and `named`
-				(value !== colorTypes.none && value !== colorTypes.named)
+				(value !== ColorTypes.none && value !== ColorTypes.named)
 				&&
 				// and for not the input color space
 				(input.colorType !== value)
 				) {
 					// offer a translated choice
-					qpChoices.push(translatedColor(input.text, input.colorType, value as colorTypes));
+					qpChoices.push(translatedColor(input.text, input.colorType, value as ColorTypes));
 				}
 			}
 
 			const namedColor = namedColorTranslation(input);
 
 			// if there is a valid named conversion, push that
-			input.colorType !== colorTypes.named && namedColor ? qpChoices.push(namedColor) : ``;
+			input.colorType !== ColorTypes.named && namedColor ? qpChoices.push(namedColor) : ``;
 
 			vscode.window.showQuickPick(
 				qpChoices
@@ -89,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
-			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.hex6));
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.hex6));
 		}
 	});
 
@@ -97,7 +97,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
-			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.hex8));
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.hex8));
 		}
 	});
 
@@ -105,7 +105,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
-			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.rgb));
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.rgb));
 		}
 	});
 
@@ -113,7 +113,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
-			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.rgba));
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.rgba));
 		}
 	});
 
@@ -121,7 +121,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
-			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.hsl));
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.hsl));
 		}
 	});
 
@@ -129,7 +129,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
-			replaceEditorText(translatedColor(input.text, input.colorType, colorTypes.hsla));
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.hsla));
 		}
 	});
 

@@ -1,4 +1,4 @@
-import { colorTypes } from './colorTypes';
+import { ColorTypes } from './colorTypes';
 import { toRgb } from './toRgb';
 
 // handles #0000 or #00000000
@@ -132,21 +132,21 @@ const rgbaToRgba = (rgba: any) => {
   return [+r, +g, +b, +a];
 };
 
-const toRgba = (color: string, colorType: colorTypes) => {
+const toRgba = (color: string, colorType: ColorTypes) => {
   switch (true) {
-    case colorType === colorTypes.hex6:
+    case colorType === ColorTypes.hex6:
       return toRgb(color, colorType).concat([1]);
-    case colorType === colorTypes.hex8:
+    case colorType === ColorTypes.hex8:
       return hex8ToRgba(color);
-    case colorType === colorTypes.rgba:
+    case colorType === ColorTypes.rgba:
       return rgbaToRgba(color);
-    case colorType === colorTypes.rgb:
+    case colorType === ColorTypes.rgb:
       return toRgb(color, colorType).concat([1]);
-    case colorType === colorTypes.hsla:
+    case colorType === ColorTypes.hsla:
       return hslaToRgba(color);
-    case colorType === colorTypes.hsl:
+    case colorType === ColorTypes.hsl:
       return toRgb(color, colorType).concat([1]);
-    case colorType === colorTypes.named:
+    case colorType === ColorTypes.named:
       return toRgb(color, colorType).concat([1]);
     default:
       return toRgb(color, colorType).concat([1]);

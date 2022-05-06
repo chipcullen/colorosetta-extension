@@ -1,5 +1,5 @@
-import { colorTypes } from './colorTypes';
-import { lowerCaseNamedColors } from  './namedColors'
+import { ColorTypes } from './colorTypes';
+import { lowerCaseNamedColors } from  './namedColors';
 
 const isValidHex6 = (color: string): boolean => {
   // https://stackoverflow.com/a/8027444/1173898
@@ -8,7 +8,7 @@ const isValidHex6 = (color: string): boolean => {
   } else {
     return false;
   }
-}
+};
 
 const isValidHex8 = (color: string): boolean => {
   // https://stackoverflow.com/a/8027444/1173898
@@ -17,7 +17,7 @@ const isValidHex8 = (color: string): boolean => {
   } else {
     return false;
   }
-}
+};
 
 const isValidRgba = (color: string): boolean => {
   // https://rgxdb.com/r/GFYPX74
@@ -27,7 +27,7 @@ const isValidRgba = (color: string): boolean => {
   } else {
     return false;
   }
-}
+};
 
 const isValidRgb = (color: string): boolean => {
   // https://rgxdb.com/r/4LS1LCA
@@ -37,7 +37,7 @@ const isValidRgb = (color: string): boolean => {
   } else {
     return false;
   }
-}
+};
 
 const isValidHsla = (color: string): boolean => {
   // https://rgxdb.com/r/6KT5NBF
@@ -48,7 +48,7 @@ const isValidHsla = (color: string): boolean => {
   } else {
     return false;
   }
-}
+};
 
 const isValidHsl = (color: string): boolean => {
   // https://rgxdb.com/r/6KT5NBF
@@ -61,16 +61,16 @@ const isValidHsl = (color: string): boolean => {
   }
 };
 
-const isValidColor = (color: string, colorType: colorTypes): boolean => {
+const isValidColor = (color: string, colorType: ColorTypes): boolean => {
   switch (true) {
     // @todo need more robust validation of these colors
-    case colorType === colorTypes.hex6 && isValidHex6(color):
-    case colorType === colorTypes.hex8 && isValidHex8(color):
-    case colorType === colorTypes.rgba && isValidRgba(color):
-    case colorType === colorTypes.rgb  && isValidRgb(color):
-    case colorType === colorTypes.hsla && isValidHsla(color):
-    case colorType === colorTypes.hsl  && isValidHsl(color):
-    case colorType === colorTypes.named &&
+    case colorType === ColorTypes.hex6 && isValidHex6(color):
+    case colorType === ColorTypes.hex8 && isValidHex8(color):
+    case colorType === ColorTypes.rgba && isValidRgba(color):
+    case colorType === ColorTypes.rgb  && isValidRgb(color):
+    case colorType === ColorTypes.hsla && isValidHsla(color):
+    case colorType === ColorTypes.hsl  && isValidHsl(color):
+    case colorType === ColorTypes.named &&
       lowerCaseNamedColors.includes(color.toLowerCase()):
       return true;
     default:
@@ -78,4 +78,4 @@ const isValidColor = (color: string, colorType: colorTypes): boolean => {
   }
 };
 
-export { isValidColor, isValidHex6, isValidHex8, isValidRgb, isValidRgba, isValidHsl, isValidHsla }
+export { isValidColor, isValidHex6, isValidHex8, isValidRgb, isValidRgba, isValidHsl, isValidHsla };

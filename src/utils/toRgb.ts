@@ -1,4 +1,4 @@
-import { colorTypes } from './colorTypes';
+import { ColorTypes } from './colorTypes';
 import { rgbWithNames } from './namedColors';
 
 // handles #000 or #000000
@@ -130,15 +130,15 @@ const namedToRgb = (name: string): Array<number> => {
   return color;
 };
 
-const toRgb = (color: string, colorType: colorTypes): Array<number> => {
+const toRgb = (color: string, colorType: ColorTypes): Array<number> => {
   switch (true) {
-    case colorType === colorTypes.hex6:
+    case colorType === ColorTypes.hex6:
       return hexToRgb(color);
-    case colorType === colorTypes.rgb:
+    case colorType === ColorTypes.rgb:
       return rgbToRgb(color);
-    case colorType === colorTypes.hsl:
+    case colorType === ColorTypes.hsl:
       return hslToRgb(color);
-    case colorType === colorTypes.named:
+    case colorType === ColorTypes.named:
       return namedToRgb(color);
     default:
       // assume rgb to rgb

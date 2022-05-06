@@ -2,7 +2,7 @@
 	"name": "colorosetta-extension",
 	"displayName": "ColoRosetta",
 	"description": "A utility to translate colors",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.66.0"
 	},

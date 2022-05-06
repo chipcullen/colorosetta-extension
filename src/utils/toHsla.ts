@@ -9,7 +9,7 @@ const rgbaToHsla = (rgba: string): Array<number> => {
     .split(")")[0]
     .split(sep);
 
-  const rgbNumberArray = [parseInt(rgbaArray[0]), parseInt(rgbaArray[1]), parseInt(rgbaArray[2])]
+  const rgbNumberArray = [parseInt(rgbaArray[0]), parseInt(rgbaArray[1]), parseInt(rgbaArray[2])];
 
   const hsla: Array<number> = rgbArrayToHsl(rgbNumberArray);
 
@@ -17,7 +17,7 @@ const rgbaToHsla = (rgba: string): Array<number> => {
   hsla.push(parseFloat(rgbaArray[3]));
 
   return hsla;
-}
+};
 
 const hex8ToHsla = (hex8: string): Array<number> => {
   let r: string = '0';
@@ -49,7 +49,7 @@ const hex8ToHsla = (hex8: string): Array<number> => {
 
   const alpha = +(parseInt(a) / 255).toFixed(2);
 
-  const rgbNumberArray = [parseInt(r), parseInt(g), parseInt(b)]
+  const rgbNumberArray = [parseInt(r), parseInt(g), parseInt(b)];
 
   const hsla: Array<number> = rgbArrayToHsl(rgbNumberArray);
 
@@ -57,6 +57,6 @@ const hex8ToHsla = (hex8: string): Array<number> => {
   hsla.push(alpha);
 
   return hsla;
-}
+};
 
 export { rgbaToHsla, hex8ToHsla };

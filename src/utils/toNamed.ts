@@ -12,14 +12,14 @@ const rgbToNamed = (rgb: Array<number>): string => {
   }
 
   return color;
-}
+};
 
 const rgbaToNamed = (rgba: Array<number>): string => {
   if (rgba[3] === 1) {
-    return rgbToNamed([rgba[0], rgba[1], rgba[2]])
+    return rgbToNamed([rgba[0], rgba[1], rgba[2]]);
   }
 
   return ``;
-}
+};
 
-export { rgbToNamed, rgbaToNamed }
+export { rgbToNamed, rgbaToNamed };

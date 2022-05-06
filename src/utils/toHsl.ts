@@ -46,7 +46,7 @@ const rgbArrayToHsl = (rgb: Array<number>): Array<number> => {
   l = +(l * 100).toFixed(1);
 
   return [h, s, l];
-}
+};
 
 const rgbToHsl = (rgb: string): Array<number> => {
 
@@ -58,10 +58,10 @@ const rgbToHsl = (rgb: string): Array<number> => {
     .split(")")[0]
     .split(sep);
 
-  const rgbNumberArray = [parseInt(rgbArray[0]), parseInt(rgbArray[1]), parseInt(rgbArray[2])]
+  const rgbNumberArray = [parseInt(rgbArray[0]), parseInt(rgbArray[1]), parseInt(rgbArray[2])];
 
   return rgbArrayToHsl(rgbNumberArray);
-}
+};
 
 const hslToHsl = (hsl: string): Array<number> => {
   const sep = hsl.indexOf(",") > -1 ? "," : " ";
@@ -83,6 +83,6 @@ const hslToHsl = (hsl: string): Array<number> => {
 const hex6ToHsl = (hex:string) => {
   // Then to HSL
   return rgbArrayToHsl(hexToRgb(hex));
-}
+};
 
 export { rgbToHsl, hex6ToHsl, hslToHsl, rgbArrayToHsl };

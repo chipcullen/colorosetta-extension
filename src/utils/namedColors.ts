@@ -302,6 +302,6 @@ const rgbWithNames = [
   {"rgb":[245,245,245], "name":"WhiteSmoke"},
   {"rgb":[255,255,0], "name":"Yellow"},
   {"rgb":[154,205,50], "name":"YellowGreen"}
-]
+];
 
 export { namedColors, lowerCaseNamedColors, rgbWithNames };
