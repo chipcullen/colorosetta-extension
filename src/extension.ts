@@ -54,7 +54,7 @@ export function activate(context: vscode.ExtensionContext) {
 		return translatedColor(input.text, input.colorType, ColorTypes.named).toLowerCase();
 	};
 
-	let translateColor = vscode.commands.registerCommand('colorosetta-extension.translateColor', () => {
+	let translateColor = vscode.commands.registerCommand('colorosetta.translateColor', () => {
 		const input = getValidInput();
 		if (input) {
 			const qpChoices = [];
@@ -85,7 +85,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let toHex6 = vscode.commands.registerCommand('colorosetta-extension.toHex6', () => {
+	let toHex6 = vscode.commands.registerCommand('colorosetta.toHex6', () => {
 		const input = getValidInput();
 
 		if (input) {
@@ -93,7 +93,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let toHex8 = vscode.commands.registerCommand('colorosetta-extension.toHex8', () => {
+	let toHex8 = vscode.commands.registerCommand('colorosetta.toHex8', () => {
 		const input = getValidInput();
 
 		if (input) {
@@ -101,7 +101,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let toRgb = vscode.commands.registerCommand('colorosetta-extension.toRgb', () => {
+	let toRgb = vscode.commands.registerCommand('colorosetta.toRgb', () => {
 		const input = getValidInput();
 
 		if (input) {
@@ -109,7 +109,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let toRgba = vscode.commands.registerCommand('colorosetta-extension.toRgba', () => {
+	let toRgba = vscode.commands.registerCommand('colorosetta.toRgba', () => {
 		const input = getValidInput();
 
 		if (input) {
@@ -117,7 +117,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let toHsl = vscode.commands.registerCommand('colorosetta-extension.toHsl', () => {
+	let toHsl = vscode.commands.registerCommand('colorosetta.toHsl', () => {
 		const input = getValidInput();
 
 		if (input) {
@@ -125,7 +125,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let toHsla = vscode.commands.registerCommand('colorosetta-extension.toHsla', () => {
+	let toHsla = vscode.commands.registerCommand('colorosetta.toHsla', () => {
 		const input = getValidInput();
 
 		if (input) {
@@ -133,7 +133,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let toNamed = vscode.commands.registerCommand('colorosetta-extension.toNamed', () => {
+	let toNamed = vscode.commands.registerCommand('colorosetta.toNamed', () => {
 		const input = getValidInput();
 
 		if (input) {

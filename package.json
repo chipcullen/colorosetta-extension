@@ -1,7 +1,7 @@
 {
-	"name": "colorosetta-extension",
+	"name": "colorosetta",
 	"displayName": "ColoRosetta",
-	"description": "A utility to translate colors",
+	"description": "A one-to-many utility to translate colors",
 	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.66.0"
@@ -9,64 +9,71 @@
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"color",
+		"colour",
+		"translation",
+		"color translation",
+		"color spaces"
+	],
 	"activationEvents": [
-		"onCommand:colorosetta-extension.translateColor",
-		"onCommand:colorosetta-extension.toHex6",
-		"onCommand:colorosetta-extension.toHex8",
-		"onCommand:colorosetta-extension.toRgb",
-		"onCommand:colorosetta-extension.toRgba",
-		"onCommand:colorosetta-extension.toHsl",
-		"onCommand:colorosetta-extension.toHsla",
-		"onCommand:colorosetta-extension.toNamed"
+		"onCommand:colorosetta.translateColor",
+		"onCommand:colorosetta.toHex6",
+		"onCommand:colorosetta.toHex8",
+		"onCommand:colorosetta.toRgb",
+		"onCommand:colorosetta.toRgba",
+		"onCommand:colorosetta.toHsl",
+		"onCommand:colorosetta.toHsla",
+		"onCommand:colorosetta.toNamed"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"menus": {
 			"commandPalette": [
 				{
-					"command": "colorosetta-extension.translateColor",
+					"command": "colorosetta.translateColor",
 					"title": "Translate Color",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toHex6",
+					"command": "colorosetta.toHex6",
 					"title": "Translate to Hex",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toHex8",
+					"command": "colorosetta.toHex8",
 					"title": "Translate to Hex 8",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toRgb",
+					"command": "colorosetta.toRgb",
 					"title": "Translate to RGB",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toRgba",
+					"command": "colorosetta.toRgba",
 					"title": "Translate to RGBa",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toHsl",
+					"command": "colorosetta.toHsl",
 					"title": "Translate to HSL",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toHsla",
+					"command": "colorosetta.toHsla",
 					"title": "Translate to HSLa",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toNamed",
+					"command": "colorosetta.toNamed",
 					"title": "Translate to Named",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
@@ -74,49 +81,49 @@
 			],
 			"editor/context": [
         {
-					"command": "colorosetta-extension.translateColor",
+					"command": "colorosetta.translateColor",
 					"title": "Translate Color",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toHex6",
+					"command": "colorosetta.toHex6",
 					"title": "Translate to Hex",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toHex8",
+					"command": "colorosetta.toHex8",
 					"title": "Translate to Hex 8",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toRgb",
+					"command": "colorosetta.toRgb",
 					"title": "Translate to RGB",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toRgba",
+					"command": "colorosetta.toRgba",
 					"title": "Translate to RGBa",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toHsl",
+					"command": "colorosetta.toHsl",
 					"title": "Translate to HSL",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toHsla",
+					"command": "colorosetta.toHsla",
 					"title": "Translate to HSLa",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
 				},
 				{
-					"command": "colorosetta-extension.toNamed",
+					"command": "colorosetta.toNamed",
 					"title": "Translate to Named",
 					"category": "ColoRosetta",
 					"when": "editorHasSelection"
@@ -125,42 +132,42 @@
 		},
 		"commands": [
 			{
-				"command": "colorosetta-extension.translateColor",
+				"command": "colorosetta.translateColor",
 				"title": "Translate Color",
 				"category": "🎨 ColoRosetta"
 			},
 			{
-				"command": "colorosetta-extension.toHex6",
+				"command": "colorosetta.toHex6",
 				"title": "Translate to Hex",
 				"category": "🎨 ColoRosetta"
 			},
 			{
-				"command": "colorosetta-extension.toHex8",
+				"command": "colorosetta.toHex8",
 				"title": "Translate to Hex 8",
 				"category": "🎨 ColoRosetta"
 			},
 			{
-				"command": "colorosetta-extension.toRgb",
+				"command": "colorosetta.toRgb",
 				"title": "Translate to RGB",
 				"category": "🎨 ColoRosetta"
 			},
 			{
-				"command": "colorosetta-extension.toRgba",
+				"command": "colorosetta.toRgba",
 				"title": "Translate to RGBa",
 				"category": "🎨 ColoRosetta"
 			},
 			{
-				"command": "colorosetta-extension.toHsl",
+				"command": "colorosetta.toHsl",
 				"title": "Translate to HSL",
 				"category": "🎨 ColoRosetta"
 			},
 			{
-				"command": "colorosetta-extension.toHsla",
+				"command": "colorosetta.toHsla",
 				"title": "Translate to HSLa",
 				"category": "🎨 ColoRosetta"
 			},
 			{
-				"command": "colorosetta-extension.toNamed",
+				"command": "colorosetta.toNamed",
 				"title": "Translate to Named",
 				"category": "🎨 ColoRosetta"
 			}
