@@ -19,7 +19,12 @@ export function activate(context: vscode.ExtensionContext) {
 			const selection = editor.selection;
 
 			// Get the text within the selection
-			const text = document.getText(selection);
+			let text = document.getText(selection);
+
+			// there is a good chance the user may have semicolons selected
+			if (text.charAt(text.length - 1) === ';') {
+				text = text.substring(0, text.length - 1);
+			}
 
 			const colorType = typeOfColor(text);
 
@@ -39,10 +44,23 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const replaceEditorText = (input: string) => {
 		const editor = vscode.window.activeTextEditor;
+
 		// need to check for input undefined -
 		// that can happen if the user escapes from the quick pick menu
 		if (editor && input !== undefined) {
+			const document = editor.document;
 			const selection = editor.selection;
+			const text = document.getText(selection);
+
+			// stripping out extra label used in translate function
+			if (input.includes(' - ')) {
+				input = input.substring(input.indexOf(' - ') + 3);
+			}
+
+			// if the selection ends in a ';' - re-add it
+			if (text.charAt(text.length - 1) === ';') {
+				input = `${input};`;
+			}
 
 			editor.edit(editBuilder => {
 				editBuilder.replace(selection, input);
@@ -68,14 +86,14 @@ export function activate(context: vscode.ExtensionContext) {
 				(input.colorType !== value)
 				) {
 					// offer a translated choice
-					qpChoices.push(translatedColor(input.text, input.colorType, value as ColorTypes));
+					qpChoices.push(`🎨 ${value.toUpperCase()} - ${translatedColor(input.text, input.colorType, value as ColorTypes)}`);
 				}
 			}
 
 			const namedColor = namedColorTranslation(input);
 
 			// if there is a valid named conversion, push that
-			input.colorType !== ColorTypes.named && namedColor ? qpChoices.push(namedColor) : ``;
+			input.colorType !== ColorTypes.named && namedColor ? qpChoices.push(`🎨 NAMED - ${namedColor}`) : ``;
 
 			vscode.window.showQuickPick(
 				qpChoices

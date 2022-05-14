@@ -3,7 +3,7 @@
 	"displayName": "ColoRosetta",
 	"description": "A one-to-many utility to translate colors",
 	"publisher": "chipcullen",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"engines": {
 		"vscode": "^1.66.0"
 	},
