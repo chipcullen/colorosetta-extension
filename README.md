@@ -2,7 +2,7 @@
 
 This VS Code extension brings the one-to-many color translations of https://colorosetta.com/ to your editor!
 
-![A color translated from the editor into seven color formats](/images/translated-color.png)
+![A color translated from the editor into seven color formats](/images/translating-color.gif)
 ## Features
 
 - Translates selected text into 7 color formats: Hex (6), Hex (8), RGB, RGBa, HSL, HSLa and Named Colors
