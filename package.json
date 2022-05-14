@@ -3,7 +3,12 @@
 	"displayName": "ColoRosetta",
 	"description": "A one-to-many utility to translate colors",
 	"publisher": "chipcullen",
-	"version": "0.2.0",
+	"version": "0.3.0",
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/chipcullen/colorosetta-extension.git"
+  },
+	"homepage": "https://github.com/chipcullen/colorosetta-extension/",
 	"engines": {
 		"vscode": "^1.66.0"
 	},
