@@ -3,7 +3,7 @@
 	"displayName": "ColoRosetta",
 	"description": "A one-to-many utility to translate colors",
 	"publisher": "chipcullen",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"repository": {
     "type": "git",
     "url": "https://github.com/chipcullen/colorosetta-extension.git"
@@ -15,6 +15,11 @@
 	"categories": [
 		"Other"
 	],
+	"icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#dddddd",
+    "theme": "light"
+  },
 	"keywords": [
 		"color",
 		"colour",
