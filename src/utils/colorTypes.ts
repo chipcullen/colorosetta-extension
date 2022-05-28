@@ -5,6 +5,7 @@ export enum ColorTypes {
   rgba = `rgba`,
   hsl = `hsl`,
   hsla = `hsla`,
+  lch = `lch`,
   named = `named`,
   none = `none`,
 }
