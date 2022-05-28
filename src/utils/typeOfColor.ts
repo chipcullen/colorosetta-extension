@@ -24,6 +24,9 @@ const typeOfColor = (color: string): ColorTypes => {
     case color.indexOf("hsl") === 0 && color.indexOf(")") !== -1:
       return ColorTypes.hsl;
 
+    case color.indexOf("lch") === 0 && color.indexOf(")") !== -1:
+      return ColorTypes.lch;
+
     // converting user input to lowercase so the input
     // can be "rebeccapurple" or "RebeccaPurple"
     case lowerCaseNamedColors.includes(color.toLowerCase()):

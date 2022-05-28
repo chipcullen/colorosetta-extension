@@ -1,3 +1,4 @@
+import { colorStringToArray } from './colorStringToArray';
 import { ColorTypes } from './colorTypes';
 import { rgbWithNames } from './namedColors';
 
@@ -34,12 +35,7 @@ const hexToRgb = (hex: string): Array<number> => {
 };
 
 const hslToRgb = (hsl: string): Array<number> => {
-  const sep = hsl.indexOf(",") > -1 ? "," : " ";
-
-  let hslArray: Array<string> = hsl
-    .substr(4)
-    .split(")")[0]
-    .split(sep);
+  const hslArray = colorStringToArray(hsl) as Array<string>;
 
   let h = hslArray[0]; // leaving this a string for now
   let s = parseInt(hslArray[1].substr(0, hslArray[1].length - 1)) / 100 || 0;
@@ -102,20 +98,10 @@ const hslToRgb = (hsl: string): Array<number> => {
 };
 
 const rgbToRgb = (rgb: string): Array<number> => {
-  const sep = rgb.indexOf(",") > -1 ? "," : " ";
-
-  const rgbArray = rgb
-    .substr(4)
-    .split(")")[0]
-    .split(sep);
-
-  const r = rgbArray[0];
-  const g = rgbArray[1];
-  const b = rgbArray[2];
-
-  return [+r, +g, +b];
+  return colorStringToArray(rgb, true) as Array<number>;
 };
 
+// Looks up rgb for named value
 const namedToRgb = (name: string): Array<number> => {
   let color: Array<number> = [];
 

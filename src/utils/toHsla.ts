@@ -1,23 +1,26 @@
+import { colorStringToArray } from './colorStringToArray';
 import { rgbArrayToHsl } from './toHsl';
 
-const rgbaToHsla = (rgba: string): Array<number> => {
-  let sep = rgba.indexOf(",") > -1 ? "," : " ";
-
-  // Turn "rgb(r,g,b,a)" into [r,g,b,a]
-  const rgbaArray: Array<string> = rgba
-    .substr(5)
-    .split(")")[0]
-    .split(sep);
-
-  const rgbNumberArray = [parseInt(rgbaArray[0]), parseInt(rgbaArray[1]), parseInt(rgbaArray[2])];
+const rgbaArrayToHsla = (rgba: Array<number>): Array<number> => {
+  const rgbNumberArray = [rgba[0], rgba[1], rgba[2]]
 
   const hsla: Array<number> = rgbArrayToHsl(rgbNumberArray);
 
   // taking on the alpha value
-  hsla.push(parseFloat(rgbaArray[3]));
+  hsla.push(rgba[3]);
 
   return hsla;
-};
+}
+
+const rgbaToHsla = (rgba: string): Array<number> => {
+  const rgbaArray = colorStringToArray(rgba, false, 5) as Array<string>
+
+  const rgbNumberArray = [parseInt(rgbaArray[0]), parseInt(rgbaArray[1]), parseInt(rgbaArray[2]), parseFloat(rgbaArray[3])]
+
+  const hsla: Array<number> = rgbaArrayToHsla(rgbNumberArray);
+
+  return hsla;
+}
 
 const hex8ToHsla = (hex8: string): Array<number> => {
   let r: string = '0';
@@ -49,7 +52,7 @@ const hex8ToHsla = (hex8: string): Array<number> => {
 
   const alpha = +(parseInt(a) / 255).toFixed(2);
 
-  const rgbNumberArray = [parseInt(r), parseInt(g), parseInt(b)];
+  const rgbNumberArray = [parseInt(r), parseInt(g), parseInt(b)]
 
   const hsla: Array<number> = rgbArrayToHsl(rgbNumberArray);
 
@@ -57,6 +60,6 @@ const hex8ToHsla = (hex8: string): Array<number> => {
   hsla.push(alpha);
 
   return hsla;
-};
+}
 
-export { rgbaToHsla, hex8ToHsla };
+export { rgbaArrayToHsla, rgbaToHsla, hex8ToHsla };

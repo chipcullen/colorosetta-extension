@@ -61,6 +61,17 @@ const isValidHsl = (color: string): boolean => {
   }
 };
 
+const isValidLch = (color: string): boolean => {
+  // @todo make sure % are 0-100,
+  // add support for `deg` and `rad` and `turn`
+  let regex = /lch\(((?=\.\d|\d)(?:\d+)?(?:\.?\d*))?%\s+((?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:(\d+))?\s+((?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:(\d+))?(\s+(\/\s+((?=\.\d|\d)(?:\d+)?(?:\.?\d*))(\d+)))?%?\)/i;
+  if (regex.test(color)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 const isValidColor = (color: string, colorType: ColorTypes): boolean => {
   switch (true) {
     // @todo need more robust validation of these colors
@@ -70,6 +81,7 @@ const isValidColor = (color: string, colorType: ColorTypes): boolean => {
     case colorType === ColorTypes.rgb  && isValidRgb(color):
     case colorType === ColorTypes.hsla && isValidHsla(color):
     case colorType === ColorTypes.hsl  && isValidHsl(color):
+    case colorType === ColorTypes.lch  && isValidLch(color):
     case colorType === ColorTypes.named &&
       lowerCaseNamedColors.includes(color.toLowerCase()):
       return true;

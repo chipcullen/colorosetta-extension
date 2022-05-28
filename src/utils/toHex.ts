@@ -1,5 +1,7 @@
 import { typeOfColor } from "./typeOfColor";
 import { namedToRgb } from "./toRgb";
+import { colorStringToArray } from "./colorStringToArray";
+
 // normalizes non-alpha hex values
 // handles 000, #000, 000000 or #000000
 const hexToHex = (hex: string): string => {
@@ -24,12 +26,7 @@ const hexToHex = (hex: string): string => {
 
 // based on https://css-tricks.com/converting-color-spaces-in-javascript/#article-header-id-19
 const hslToHex = (hsl: string): string => {
-  const sep = hsl.indexOf(",") > -1 ? "," : " ";
-
-  let hslArray: Array<string> = hsl
-    .substr(4)
-    .split(")")[0]
-    .split(sep);
+  const hslArray = colorStringToArray(hsl) as Array<string>;
 
   let h = hslArray[0]; // leaving this a string for now
   let s = parseInt(hslArray[1].substr(0, hslArray[1].length - 1)) / 100 || 0;
@@ -100,13 +97,7 @@ const hslToHex = (hsl: string): string => {
 
 // https://css-tricks.com/converting-color-spaces-in-javascript/#article-header-id-1
 const rgbToHex = (rgb: string): string => {
-  let sep = rgb.indexOf(",") > -1 ? "," : " ";
-
-  // Turn "rgb(r,g,b)" into [r,g,b]
-  const rgbArray: Array<string> = rgb
-    .substr(4)
-    .split(")")[0]
-    .split(sep);
+  const rgbArray = colorStringToArray(rgb) as Array<string>;
 
   let r = (+rgbArray[0]).toString(16);
   let g = (+rgbArray[1]).toString(16);
@@ -155,4 +146,4 @@ const toHex = (color:string) => {
   }
 };
 
-export { hexToHex, hslToHex, rgbToHex, rgbArrayToHex, toHex };
+export { hexToHex, hslToHex, rgbToHex, rgbArrayToHex, namedToHex, toHex };

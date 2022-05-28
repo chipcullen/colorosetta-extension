@@ -1,3 +1,4 @@
+import { colorStringToArray } from './colorStringToArray';
 import { hslaToRgba } from './toRgba';
 
 const rgbaArrayToHex8 = (rgbaArray: Array<number>): string => {
@@ -16,17 +17,10 @@ const rgbaArrayToHex8 = (rgbaArray: Array<number>): string => {
     a = "0" + a;
 
   return "#" + r + g + b + a;
-};
+}
 
 const rgbaToHex8 = (rgba: string) => {
-
-  let sep = rgba.indexOf(",") > -1 ? "," : " ";
-
-  // Turn "rgba(r,g,b,a)" into [r,g,b,a]
-  const rgbaArray: Array<string> = rgba
-    .substr(5)
-    .split(")")[0]
-    .split(sep);
+  const rgbaArray: Array<string> = colorStringToArray(rgba, false, 5) as Array<string>;
 
   const rgbaNumArray: Array<number> = [
     parseInt(rgbaArray[0]),
@@ -36,10 +30,11 @@ const rgbaToHex8 = (rgba: string) => {
   ];
 
   return rgbaArrayToHex8(rgbaNumArray);
-};
+}
 
 const hslaToHex8 = (hsla: string) => {
   return rgbaArrayToHex8(hslaToRgba(hsla));
-};
+}
 
-export { rgbaToHex8, hslaToHex8 };
+
+export { rgbaArrayToHex8, rgbaToHex8, hslaToHex8 };
