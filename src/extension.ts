@@ -3,6 +3,7 @@ import { typeOfColor } from './utils/typeOfColor';
 import { isValidColor } from './utils/isValidColor';
 import { translatedColor } from './utils/translatedColor';
 import { ColorTypes } from './utils/colorTypes';
+import { isLchOutOfRgbGamut } from './utils/isLchOutOfRgbGamut';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -29,7 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const colorType = typeOfColor(text);
 
 			if (!colorType || !isValidColor(text, colorType)) {
-				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RBGa, HSL, HSLa, or valid named color');
+				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RBGa, HSL, HSLa, LCH, or valid named color');
 				return null;
 			}
 
@@ -41,6 +42,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 		return null;
 	};
+
+	const lchGamutCheck = (input: ColorInput) => {
+		if (input.colorType === ColorTypes.lch && isLchOutOfRgbGamut(input.text)) {
+			vscode.window.showInformationMessage('LCH color is outside the RGB gamut; translation is an approximation');
+		}
+	}
 
 	const replaceEditorText = (input: string) => {
 		const editor = vscode.window.activeTextEditor;
@@ -98,6 +105,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showQuickPick(
 				qpChoices
 			).then(qpSelection => {
+				lchGamutCheck(input);
 				replaceEditorText(qpSelection as string);
 			});
 		}
@@ -107,6 +115,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
+			lchGamutCheck(input);
 			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.hex6));
 		}
 	});
@@ -115,6 +124,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
+			lchGamutCheck(input);
 			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.hex8));
 		}
 	});
@@ -123,6 +133,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
+			lchGamutCheck(input);
 			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.rgb));
 		}
 	});
@@ -131,6 +142,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
+			lchGamutCheck(input);
 			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.rgba));
 		}
 	});
@@ -139,6 +151,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
+			lchGamutCheck(input);
 			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.hsl));
 		}
 	});
@@ -147,7 +160,16 @@ export function activate(context: vscode.ExtensionContext) {
 		const input = getValidInput();
 
 		if (input) {
+			lchGamutCheck(input);
 			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.hsla));
+		}
+	});
+
+	let toLch = vscode.commands.registerCommand('colorosetta.toLch', () => {
+		const input = getValidInput();
+
+		if (input) {
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.lch));
 		}
 	});
 
@@ -158,6 +180,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const namedColor = namedColorTranslation(input);
 
 			if (namedColor) {
+				lchGamutCheck(input);
 				replaceEditorText(namedColor);
 			} else {
 				vscode.window.showWarningMessage(
@@ -167,7 +190,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(translateColor, toHex6, toHex8, toRgb, toRgba, toHsl, toHsla, toNamed);
+	context.subscriptions.push(translateColor, toHex6, toHex8, toRgb, toRgba, toHsl, toHsla, toLch, toNamed);
 }
 
 // this method is called when your extension is deactivated
