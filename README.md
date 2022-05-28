@@ -5,7 +5,7 @@ This VS Code extension brings the one-to-many color translations of https://colo
 ![A color translated from the editor into seven color formats](/images/translating-color.gif)
 ## Features
 
-- Translates selected text into 7 color formats: Hex (6), Hex (8), RGB, RGBa, HSL, HSLa and Named Colors
+- Translates selected text into 8 color formats: Hex (6), Hex (8), RGB, RGBa, HSL, HSLa, **LCH** and Named Colors
 - Can translate directly to each of those color formats.
 ![A color translated from the editor into seven color formats](/images/direct-translating-color.gif)
 (If you choose named, and there is no matching named color, you get a warning instead.)
@@ -25,7 +25,7 @@ This VS Code extension brings the one-to-many color translations of https://colo
 ## Known Issues / @TODO's
 
 - Add support for the [modern color syntax](https://twitter.com/mathias/status/1253242715304857601) without commas
-- Add support for [LCH](https://css.land/lch/)
+
 
 
 
