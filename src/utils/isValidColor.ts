@@ -1,93 +1,65 @@
+import Color from 'colorjs.io';
 import { ColorTypes } from './colorTypes';
-import { lowerCaseNamedColors } from  './namedColors';
+import { lowerCaseNamedColors } from './namedColors';
 
-const isValidHex6 = (color: string): boolean => {
-  // https://stackoverflow.com/a/8027444/1173898
-  if (/^(#)?[0-9A-F]{3}$/i.test(color) || /^(#)?[0-9A-F]{6}$/i.test(color)) {
+const canParseColor = (color: string): boolean => {
+  try {
+    new Color(color);
     return true;
-  } else {
+  } catch {
     return false;
   }
+};
+
+const isValidHex6 = (color: string): boolean => {
+  return /^(#)?[0-9A-F]{3}$/i.test(color) || /^(#)?[0-9A-F]{6}$/i.test(color);
 };
 
 const isValidHex8 = (color: string): boolean => {
-  // https://stackoverflow.com/a/8027444/1173898
-  if (/^(#)?[0-9A-F]{4}$/i.test(color) || /^(#)?[0-9A-F]{8}$/i.test(color)) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-const isValidRgba = (color: string): boolean => {
-  // https://rgxdb.com/r/GFYPX74
-  // @todo make sure values are 0-100 for % or 0-255 for unitless
-  if (/rgba\(\s*(-?\d+|-?\d*\.\d+(?=%))(%?)\s*,\s*(-?\d+|-?\d*\.\d+(?=%))(\2)\s*,\s*(-?\d+|-?\d*\.\d+(?=%))(\2)\s*,\s*(-?\d+|-?\d*.\d+)\s*\)/.test(color)) {
-    return true;
-  } else {
-    return false;
-  }
+  return /^(#)?[0-9A-F]{4}$/i.test(color) || /^(#)?[0-9A-F]{8}$/i.test(color);
 };
 
 const isValidRgb = (color: string): boolean => {
-  // https://rgxdb.com/r/4LS1LCA
-  // @todo make sure values are 0-100 for % or 0-255 for unitless
-  if (/rgb\(\s*(-?\d+|-?\d*\.\d+(?=%))(%?)\s*,\s*(-?\d+|-?\d*\.\d+(?=%))(\2)\s*,\s*(-?\d+|-?\d*\.\d+(?=%))(\2)\s*\)/.test(color)) {
-    return true;
-  } else {
-    return false;
-  }
+  return color.startsWith('rgb(') && canParseColor(color);
 };
 
-const isValidHsla = (color: string): boolean => {
-  // https://rgxdb.com/r/6KT5NBF
-  // @todo make sure % are 0-100,
-  // add support for `deg` and `rad` and `turn`
-  if (/hsla\(\s*(-?\d+|-?\d*.\d+)\s*,\s*(-?\d+|-?\d*.\d+)%\s*,\s*(-?\d+|-?\d*.\d+)%\s*,\s*(-?\d+|-?\d*.\d+)\s*\)/.test(color)) {
-    return true;
-  } else {
-    return false;
-  }
+const isValidRgba = (color: string): boolean => {
+  return color.startsWith('rgba(') && canParseColor(color);
 };
 
 const isValidHsl = (color: string): boolean => {
-  // https://rgxdb.com/r/6KT5NBF
-  // @todo make sure % are 0-100,
-  // add support for `deg` and `rad` and `turn`
-  if (/hsl\(\s*(-?\d+|-?\d*.\d+)\s*,\s*(-?\d+|-?\d*.\d+)%\s*,\s*(-?\d+|-?\d*.\d+)%\s*\)/.test(color)) {
-    return true;
-  } else {
-    return false;
-  }
+  return color.startsWith('hsl(') && canParseColor(color);
+};
+
+const isValidHsla = (color: string): boolean => {
+  return color.startsWith('hsla(') && canParseColor(color);
 };
 
 const isValidLch = (color: string): boolean => {
-  // @todo make sure % are 0-100,
-  // add support for `deg` and `rad` and `turn`
-  let regex = /lch\(((?=\.\d|\d)(?:\d+)?(?:\.?\d*))?%\s+((?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:(\d+))?\s+((?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:(\d+))?(\s+(\/\s+((?=\.\d|\d)(?:\d+)?(?:\.?\d*))(\d+)))?%?\)/i;
-  if (regex.test(color)) {
-    return true;
-  } else {
-    return false;
-  }
-}
+  return color.startsWith('lch(') && canParseColor(color);
+};
 
 const isValidColor = (color: string, colorType: ColorTypes): boolean => {
-  switch (true) {
-    // @todo need more robust validation of these colors
-    case colorType === ColorTypes.hex6 && isValidHex6(color):
-    case colorType === ColorTypes.hex8 && isValidHex8(color):
-    case colorType === ColorTypes.rgba && isValidRgba(color):
-    case colorType === ColorTypes.rgb  && isValidRgb(color):
-    case colorType === ColorTypes.hsla && isValidHsla(color):
-    case colorType === ColorTypes.hsl  && isValidHsl(color):
-    case colorType === ColorTypes.lch  && isValidLch(color):
-    case colorType === ColorTypes.named &&
-      lowerCaseNamedColors.includes(color.toLowerCase()):
-      return true;
+  switch (colorType) {
+    case ColorTypes.hex6:
+      return isValidHex6(color);
+    case ColorTypes.hex8:
+      return isValidHex8(color);
+    case ColorTypes.rgb:
+      return isValidRgb(color);
+    case ColorTypes.rgba:
+      return isValidRgba(color);
+    case ColorTypes.hsl:
+      return isValidHsl(color);
+    case ColorTypes.hsla:
+      return isValidHsla(color);
+    case ColorTypes.lch:
+      return isValidLch(color);
+    case ColorTypes.named:
+      return lowerCaseNamedColors.includes(color.toLowerCase());
     default:
       return false;
   }
 };
 
-export { isValidColor, isValidHex6, isValidHex8, isValidRgb, isValidRgba, isValidHsl, isValidHsla };
+export { isValidColor, isValidHex6, isValidHex8, isValidRgb, isValidRgba, isValidHsl, isValidHsla, isValidLch };
