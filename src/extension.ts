@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const colorType = typeOfColor(text);
 
 			if (!colorType || !isValidColor(text, colorType)) {
-				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RGBa, HSL, HSLa, LCH, or valid named color');
+				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RGBa, HSL, HSLa, LCH, OKLCH, Display P3, or valid named color');
 				return null;
 			}
 

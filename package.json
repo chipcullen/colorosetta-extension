@@ -244,7 +244,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "test:unit": "npm run compile && mocha --ui tdd 'out/test/suite/utils.test.js'"
   },
   "devDependencies": {
     "@types/glob": "^9.0.0",
