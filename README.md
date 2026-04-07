@@ -14,7 +14,7 @@ This VS Code extension brings the one-to-many color translations of https://colo
 
 ## Installation
 
-- You can install through the extensions menu ()
+- You can install through the extensions menu
 - Or, in the command palette, `install extension` then look for `colorosetta`
 - Or, download from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=chipcullen.colorosetta)
 
