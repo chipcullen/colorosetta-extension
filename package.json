@@ -3,7 +3,7 @@
   "displayName": "ColoRosetta",
   "description": "A one-to-many utility to translate colors",
   "publisher": "chipcullen",
-  "version": "0.4.2",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/chipcullen/colorosetta-extension.git"
@@ -36,6 +36,8 @@
     "onCommand:colorosetta.toHsl",
     "onCommand:colorosetta.toHsla",
     "onCommand:colorosetta.toLch",
+    "onCommand:colorosetta.toOklch",
+    "onCommand:colorosetta.toP3",
     "onCommand:colorosetta.toNamed"
   ],
   "main": "./out/extension.js",
@@ -87,6 +89,18 @@
         {
           "command": "colorosetta.toLch",
           "title": "Translate to LCH",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toOklch",
+          "title": "Translate to OKLCH",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toP3",
+          "title": "Translate to Display P3",
           "category": "ColoRosetta",
           "when": "editorHasSelection"
         },
@@ -147,6 +161,18 @@
           "when": "editorHasSelection"
         },
         {
+          "command": "colorosetta.toOklch",
+          "title": "Translate to OKLCH",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toP3",
+          "title": "Translate to Display P3",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
           "command": "colorosetta.toNamed",
           "title": "Translate to Named",
           "category": "ColoRosetta",
@@ -196,6 +222,16 @@
         "category": "🎨 ColoRosetta"
       },
       {
+        "command": "colorosetta.toOklch",
+        "title": "Translate to OKLCH",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toP3",
+        "title": "Translate to Display P3",
+        "category": "🎨 ColoRosetta"
+      },
+      {
         "command": "colorosetta.toNamed",
         "title": "Translate to Named",
         "category": "🎨 ColoRosetta"
@@ -208,7 +244,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "test:unit": "npm run compile && mocha --ui tdd 'out/test/suite/utils.test.js'"
   },
   "devDependencies": {
     "@types/glob": "^9.0.0",

@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const colorType = typeOfColor(text);
 
 			if (!colorType || !isValidColor(text, colorType)) {
-				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RGBa, HSL, HSLa, LCH, or valid named color');
+				vscode.window.showErrorMessage('Please input a valid color - Hex, Hex8, RGB, RGBa, HSL, HSLa, LCH, OKLCH, Display P3, or valid named color');
 				return null;
 			}
 
@@ -159,6 +159,22 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
+	let toOklch = vscode.commands.registerCommand('colorosetta.toOklch', () => {
+		const input = getValidInput();
+
+		if (input) {
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.oklch));
+		}
+	});
+
+	let toP3 = vscode.commands.registerCommand('colorosetta.toP3', () => {
+		const input = getValidInput();
+
+		if (input) {
+			replaceEditorText(translatedColor(input.text, input.colorType, ColorTypes.p3));
+		}
+	});
+
 	let toNamed = vscode.commands.registerCommand('colorosetta.toNamed', () => {
 		const input = getValidInput();
 
@@ -175,7 +191,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(translateColor, toHex6, toHex8, toRgb, toRgba, toHsl, toHsla, toLch, toNamed);
+	context.subscriptions.push(translateColor, toHex6, toHex8, toRgb, toRgba, toHsl, toHsla, toLch, toOklch, toP3, toNamed);
 }
 
 // this method is called when your extension is deactivated

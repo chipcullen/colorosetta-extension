@@ -39,6 +39,14 @@ const isValidLch = (color: string): boolean => {
   return color.startsWith('lch(') && canParseColor(color);
 };
 
+const isValidOklch = (color: string): boolean => {
+  return color.startsWith('oklch(') && canParseColor(color);
+};
+
+const isValidP3 = (color: string): boolean => {
+  return color.startsWith('color(display-p3') && canParseColor(color);
+};
+
 const isValidColor = (color: string, colorType: ColorTypes): boolean => {
   switch (colorType) {
     case ColorTypes.hex6:
@@ -55,6 +63,10 @@ const isValidColor = (color: string, colorType: ColorTypes): boolean => {
       return isValidHsla(color);
     case ColorTypes.lch:
       return isValidLch(color);
+    case ColorTypes.oklch:
+      return isValidOklch(color);
+    case ColorTypes.p3:
+      return isValidP3(color);
     case ColorTypes.named:
       return lowerCaseNamedColors.includes(color.toLowerCase());
     default:
@@ -62,4 +74,4 @@ const isValidColor = (color: string, colorType: ColorTypes): boolean => {
   }
 };
 
-export { isValidColor, isValidHex6, isValidHex8, isValidRgb, isValidRgba, isValidHsl, isValidHsla, isValidLch };
+export { isValidColor, isValidHex6, isValidHex8, isValidRgb, isValidRgba, isValidHsl, isValidHsla, isValidLch, isValidOklch, isValidP3 };
