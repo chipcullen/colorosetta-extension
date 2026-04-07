@@ -1,226 +1,226 @@
 {
-	"name": "colorosetta",
-	"displayName": "ColoRosetta",
-	"description": "A one-to-many utility to translate colors",
-	"publisher": "chipcullen",
-	"version": "0.4.1",
-	"repository": {
+  "name": "colorosetta",
+  "displayName": "ColoRosetta",
+  "description": "A one-to-many utility to translate colors",
+  "publisher": "chipcullen",
+  "version": "0.4.2",
+  "repository": {
     "type": "git",
     "url": "https://github.com/chipcullen/colorosetta-extension.git"
   },
-	"homepage": "https://github.com/chipcullen/colorosetta-extension/",
-	"engines": {
-		"vscode": "^1.66.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"icon": "images/icon.png",
+  "homepage": "https://github.com/chipcullen/colorosetta-extension/",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#555555",
     "theme": "dark"
   },
-	"keywords": [
-		"color",
-		"colour",
-		"translation",
-		"color translation",
-		"color spaces"
-	],
-	"activationEvents": [
-		"onCommand:colorosetta.translateColor",
-		"onCommand:colorosetta.toHex6",
-		"onCommand:colorosetta.toHex8",
-		"onCommand:colorosetta.toRgb",
-		"onCommand:colorosetta.toRgba",
-		"onCommand:colorosetta.toHsl",
-		"onCommand:colorosetta.toHsla",
-		"onCommand:colorosetta.toLch",
-		"onCommand:colorosetta.toNamed"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"menus": {
-			"commandPalette": [
-				{
-					"command": "colorosetta.translateColor",
-					"title": "Translate Color",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toHex6",
-					"title": "Translate to Hex",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toHex8",
-					"title": "Translate to Hex 8",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toRgb",
-					"title": "Translate to RGB",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toRgba",
-					"title": "Translate to RGBa",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toHsl",
-					"title": "Translate to HSL",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toHsla",
-					"title": "Translate to HSLa",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toLch",
-					"title": "Translate to LCH",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toNamed",
-					"title": "Translate to Named",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				}
-			],
-			"editor/context": [
+  "keywords": [
+    "color",
+    "colour",
+    "translation",
+    "color translation",
+    "color spaces"
+  ],
+  "activationEvents": [
+    "onCommand:colorosetta.translateColor",
+    "onCommand:colorosetta.toHex6",
+    "onCommand:colorosetta.toHex8",
+    "onCommand:colorosetta.toRgb",
+    "onCommand:colorosetta.toRgba",
+    "onCommand:colorosetta.toHsl",
+    "onCommand:colorosetta.toHsla",
+    "onCommand:colorosetta.toLch",
+    "onCommand:colorosetta.toNamed"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "menus": {
+      "commandPalette": [
         {
-					"command": "colorosetta.translateColor",
-					"title": "Translate Color",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toHex6",
-					"title": "Translate to Hex",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toHex8",
-					"title": "Translate to Hex 8",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toRgb",
-					"title": "Translate to RGB",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toRgba",
-					"title": "Translate to RGBa",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toHsl",
-					"title": "Translate to HSL",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toHsla",
-					"title": "Translate to HSLa",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toLch",
-					"title": "Translate to LCH",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				},
-				{
-					"command": "colorosetta.toNamed",
-					"title": "Translate to Named",
-					"category": "ColoRosetta",
-					"when": "editorHasSelection"
-				}
-			]
-		},
-		"commands": [
-			{
-				"command": "colorosetta.translateColor",
-				"title": "Translate Color",
-				"category": "🎨 ColoRosetta"
-			},
-			{
-				"command": "colorosetta.toHex6",
-				"title": "Translate to Hex",
-				"category": "🎨 ColoRosetta"
-			},
-			{
-				"command": "colorosetta.toHex8",
-				"title": "Translate to Hex 8",
-				"category": "🎨 ColoRosetta"
-			},
-			{
-				"command": "colorosetta.toRgb",
-				"title": "Translate to RGB",
-				"category": "🎨 ColoRosetta"
-			},
-			{
-				"command": "colorosetta.toRgba",
-				"title": "Translate to RGBa",
-				"category": "🎨 ColoRosetta"
-			},
-			{
-				"command": "colorosetta.toHsl",
-				"title": "Translate to HSL",
-				"category": "🎨 ColoRosetta"
-			},
-			{
-				"command": "colorosetta.toHsla",
-				"title": "Translate to HSLa",
-				"category": "🎨 ColoRosetta"
-			},
-			{
-				"command": "colorosetta.toLch",
-				"title": "Translate to LCH",
-				"category": "🎨 ColoRosetta"
-			},
-			{
-				"command": "colorosetta.toNamed",
-				"title": "Translate to Named",
-				"category": "🎨 ColoRosetta"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.66.0",
-		"@types/glob": "^7.2.0",
-		"@types/mocha": "^9.1.0",
-		"@types/node": "14.x",
-		"@typescript-eslint/eslint-plugin": "^5.16.0",
-		"@typescript-eslint/parser": "^5.16.0",
-		"eslint": "^8.11.0",
-		"glob": "^7.2.0",
-		"mocha": "^9.2.2",
-		"typescript": "^4.5.5",
-		"@vscode/test-electron": "^2.1.3"
-	}
+          "command": "colorosetta.translateColor",
+          "title": "Translate Color",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toHex6",
+          "title": "Translate to Hex",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toHex8",
+          "title": "Translate to Hex 8",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toRgb",
+          "title": "Translate to RGB",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toRgba",
+          "title": "Translate to RGBa",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toHsl",
+          "title": "Translate to HSL",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toHsla",
+          "title": "Translate to HSLa",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toLch",
+          "title": "Translate to LCH",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toNamed",
+          "title": "Translate to Named",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "colorosetta.translateColor",
+          "title": "Translate Color",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toHex6",
+          "title": "Translate to Hex",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toHex8",
+          "title": "Translate to Hex 8",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toRgb",
+          "title": "Translate to RGB",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toRgba",
+          "title": "Translate to RGBa",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toHsl",
+          "title": "Translate to HSL",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toHsla",
+          "title": "Translate to HSLa",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toLch",
+          "title": "Translate to LCH",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toNamed",
+          "title": "Translate to Named",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "colorosetta.translateColor",
+        "title": "Translate Color",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toHex6",
+        "title": "Translate to Hex",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toHex8",
+        "title": "Translate to Hex 8",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toRgb",
+        "title": "Translate to RGB",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toRgba",
+        "title": "Translate to RGBa",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toHsl",
+        "title": "Translate to HSL",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toHsla",
+        "title": "Translate to HSLa",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toLch",
+        "title": "Translate to LCH",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toNamed",
+        "title": "Translate to Named",
+        "category": "🎨 ColoRosetta"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^9.0.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^25.5.2",
+    "@types/vscode": "^1.66.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
+    "@vscode/test-electron": "^2.1.3",
+    "eslint": "^10.2.0",
+    "glob": "^13.0.6",
+    "mocha": "^11.7.5",
+    "typescript": "^6.0.2"
+  }
 }
