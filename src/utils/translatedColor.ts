@@ -78,6 +78,24 @@ const translatedColor = (
       return `lch(${l}% ${c} ${h}${alphaStr})`;
     }
 
+    case ColorTypes.oklch: {
+      const oklch = parsed.to('oklch');
+      const coords = oklch.coords;
+      const round2 = (v: number) => Math.round((v + Number.EPSILON) * 100) / 100;
+      const l = round2((coords[0] ?? 0) * 100);
+      const c = round2(coords[1] ?? 0);
+      const h = round2(coords[2] ?? 0);
+      const alphaStr = a < 1 ? ` / ${a}` : '';
+      return `oklch(${l}% ${c} ${h}${alphaStr})`;
+    }
+
+    case ColorTypes.p3: {
+      const p3 = parsed.to('p3');
+      const [pr, pg, pb] = p3.coords.map((v: number | null) => +((v ?? 0).toFixed(2)));
+      const alphaStr = a < 1 ? ` / ${a}` : '';
+      return `color(display-p3 ${pr} ${pg} ${pb}${alphaStr})`;
+    }
+
     case ColorTypes.named: {
       const [or, og, ob] = overlaid ?? [r, g, b];
       if (a === 1) return rgbToNamed([or, og, ob]);

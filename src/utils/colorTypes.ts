@@ -6,6 +6,8 @@ export enum ColorTypes {
   hsl = `hsl`,
   hsla = `hsla`,
   lch = `lch`,
+  oklch = `oklch`,
+  p3 = `p3`,
   named = `named`,
   none = `none`,
 }

@@ -36,6 +36,8 @@
     "onCommand:colorosetta.toHsl",
     "onCommand:colorosetta.toHsla",
     "onCommand:colorosetta.toLch",
+    "onCommand:colorosetta.toOklch",
+    "onCommand:colorosetta.toP3",
     "onCommand:colorosetta.toNamed"
   ],
   "main": "./out/extension.js",
@@ -87,6 +89,18 @@
         {
           "command": "colorosetta.toLch",
           "title": "Translate to LCH",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toOklch",
+          "title": "Translate to OKLCH",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toP3",
+          "title": "Translate to Display P3",
           "category": "ColoRosetta",
           "when": "editorHasSelection"
         },
@@ -147,6 +161,18 @@
           "when": "editorHasSelection"
         },
         {
+          "command": "colorosetta.toOklch",
+          "title": "Translate to OKLCH",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "colorosetta.toP3",
+          "title": "Translate to Display P3",
+          "category": "ColoRosetta",
+          "when": "editorHasSelection"
+        },
+        {
           "command": "colorosetta.toNamed",
           "title": "Translate to Named",
           "category": "ColoRosetta",
@@ -193,6 +219,16 @@
       {
         "command": "colorosetta.toLch",
         "title": "Translate to LCH",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toOklch",
+        "title": "Translate to OKLCH",
+        "category": "🎨 ColoRosetta"
+      },
+      {
+        "command": "colorosetta.toP3",
+        "title": "Translate to Display P3",
         "category": "🎨 ColoRosetta"
       },
       {
