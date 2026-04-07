@@ -222,5 +222,8 @@
     "glob": "^13.0.6",
     "mocha": "^11.7.5",
     "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "colorjs.io": "^0.6.1"
   }
 }
