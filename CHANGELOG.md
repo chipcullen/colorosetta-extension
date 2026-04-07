@@ -1,8 +1,9 @@
 # Change Log
 
-All notable changes to the "colorosetta-extension" extension will be documented in this file.
+## [1.0.0]
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Updated to be powered by [color.js](https://colorjs.io/)
+- Added OKLCH and P3 support
 
 ## [0.4.2]
 
