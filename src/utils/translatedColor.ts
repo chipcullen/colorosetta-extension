@@ -30,7 +30,7 @@ const translatedColor = (
   }
 
   // For alpha-bearing types, flatten to RGB on white before converting
-  // to formats that don't carry alpha (hex6, rgb, hsl, named)
+  // to formats that don't carry alpha here (hex6, named); rgb/hsl preserve alpha via modern syntax
   const hasAlpha = parsed.alpha < 1;
   const needsOverlay =
     hasAlpha && [ColorTypes.hex6, ColorTypes.named].includes(targetColorType);
