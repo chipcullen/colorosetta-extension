@@ -10,7 +10,7 @@ This VS Code extension brings the one-to-many color translations of https://colo
 - Can translate directly to each of those color formats.
   ![A color translated from the editor into nine color formats](/images/translating-directly-to-p3.gif)
   (If you choose named, and there is no matching named color, you get a warning instead.)
-- `rgb` and `hsl` formats support the modern syntax with no commas, and the alpha channel after an optional `/` - e.g. `rgb(255, 255, 255 / 50%)`
+- `rgb` and `hsl` formats support the modern syntax with no commas, and the alpha channel after an optional `/` - e.g. `rgb(255 255 255 / 50%)`
 - Note: if translating from a color space with an alpha channel (e.g. modern rgb) to one without an alpha channel (e.g. Hex 6), the translated color assumes a `#ffffff` background
 
 ## Installation
