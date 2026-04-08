@@ -19,20 +19,14 @@ const isValidHex8 = (color: string): boolean => {
   return /^(#)?[0-9A-F]{4}$/i.test(color) || /^(#)?[0-9A-F]{8}$/i.test(color);
 };
 
+// accepts either modern rgb/rgba syntax
 const isValidRgb = (color: string): boolean => {
-  return color.startsWith('rgb(') && canParseColor(color);
+  return (color.startsWith('rgb(') || color.startsWith('rgba(')) && canParseColor(color);
 };
 
-const isValidRgba = (color: string): boolean => {
-  return color.startsWith('rgba(') && canParseColor(color);
-};
-
+// accepts either modern hsl/hsla syntax
 const isValidHsl = (color: string): boolean => {
-  return color.startsWith('hsl(') && canParseColor(color);
-};
-
-const isValidHsla = (color: string): boolean => {
-  return color.startsWith('hsla(') && canParseColor(color);
+  return (color.startsWith('hsl(') || color.startsWith('hsla(')) && canParseColor(color);
 };
 
 const isValidLch = (color: string): boolean => {
@@ -55,12 +49,8 @@ const isValidColor = (color: string, colorType: ColorTypes): boolean => {
       return isValidHex8(color);
     case ColorTypes.rgb:
       return isValidRgb(color);
-    case ColorTypes.rgba:
-      return isValidRgba(color);
     case ColorTypes.hsl:
       return isValidHsl(color);
-    case ColorTypes.hsla:
-      return isValidHsla(color);
     case ColorTypes.lch:
       return isValidLch(color);
     case ColorTypes.oklch:
@@ -74,4 +64,4 @@ const isValidColor = (color: string, colorType: ColorTypes): boolean => {
   }
 };
 
-export { isValidColor, isValidHex6, isValidHex8, isValidRgb, isValidRgba, isValidHsl, isValidHsla, isValidLch, isValidOklch, isValidP3 };
+export { isValidColor, isValidHex6, isValidHex8, isValidRgb, isValidHsl, isValidLch, isValidOklch, isValidP3 };

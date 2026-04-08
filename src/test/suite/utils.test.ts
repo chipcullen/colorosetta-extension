@@ -19,21 +19,17 @@ suite('typeOfColor', () => {
 	test('detects rgb', () => {
 		assert.strictEqual(typeOfColor('rgb(255 0 0)'), ColorTypes.rgb);
 		assert.strictEqual(typeOfColor('rgb(255, 0, 0)'), ColorTypes.rgb);
-	});
-
-	test('detects rgba', () => {
-		assert.strictEqual(typeOfColor('rgba(255 0 0 / 0.5)'), ColorTypes.rgba);
-		assert.strictEqual(typeOfColor('rgba(255, 0, 0, 0.5)'), ColorTypes.rgba);
+		assert.strictEqual(typeOfColor('rgb(255 0 0 / 0.5)'), ColorTypes.rgb);
+		assert.strictEqual(typeOfColor('rgba(255 0 0 / 0.5)'), ColorTypes.rgb);
+		assert.strictEqual(typeOfColor('rgba(255, 0, 0, 0.5)'), ColorTypes.rgb);
 	});
 
 	test('detects hsl', () => {
 		assert.strictEqual(typeOfColor('hsl(0 100% 50%)'), ColorTypes.hsl);
 		assert.strictEqual(typeOfColor('hsl(0, 100%, 50%)'), ColorTypes.hsl);
-	});
-
-	test('detects hsla', () => {
-		assert.strictEqual(typeOfColor('hsla(0 100% 50% / 0.5)'), ColorTypes.hsla);
-		assert.strictEqual(typeOfColor('hsla(0, 100%, 50%, 0.5)'), ColorTypes.hsla);
+		assert.strictEqual(typeOfColor('hsl(0 100% 50% / 0.5)'), ColorTypes.hsl);
+		assert.strictEqual(typeOfColor('hsla(0 100% 50% / 0.5)'), ColorTypes.hsl);
+		assert.strictEqual(typeOfColor('hsla(0, 100%, 50%, 0.5)'), ColorTypes.hsl);
 	});
 
 	test('detects lch', () => {
@@ -77,9 +73,11 @@ suite('isValidColor', () => {
 		assert.strictEqual(isValidColor('hsl(0 100% 50%)', ColorTypes.rgb), false);
 	});
 
-	test('validates rgba', () => {
-		assert.strictEqual(isValidColor('rgba(255 0 0 / 0.5)', ColorTypes.rgba), true);
-		assert.strictEqual(isValidColor('rgba(255, 0, 0, 0.5)', ColorTypes.rgba), true);
+	test('validates legacy rgba/hsla aliases under consolidated types', () => {
+		assert.strictEqual(isValidColor('rgba(255 0 0 / 0.5)', ColorTypes.rgb), true);
+		assert.strictEqual(isValidColor('rgba(255, 0, 0, 0.5)', ColorTypes.rgb), true);
+		assert.strictEqual(isValidColor('hsla(0 100% 50% / 0.5)', ColorTypes.hsl), true);
+		assert.strictEqual(isValidColor('hsla(0, 100%, 50%, 0.5)', ColorTypes.hsl), true);
 	});
 
 	test('validates hsl', () => {
@@ -108,10 +106,8 @@ suite('isValidColor', () => {
 suite('translatedColor', () => {
 	test('hex6 to all targets', () => {
 		assert.strictEqual(translatedColor('#ff0000', ColorTypes.hex6, ColorTypes.rgb), 'rgb(255 0 0)');
-		assert.strictEqual(translatedColor('#ff0000', ColorTypes.hex6, ColorTypes.rgba), 'rgba(255 0 0 / 1)');
 		assert.strictEqual(translatedColor('#ff0000', ColorTypes.hex6, ColorTypes.hex8), '#ff0000ff');
 		assert.strictEqual(translatedColor('#ff0000', ColorTypes.hex6, ColorTypes.hsl), 'hsl(0 100% 50%)');
-		assert.strictEqual(translatedColor('#ff0000', ColorTypes.hex6, ColorTypes.hsla), 'hsla(0 100% 50% / 1)');
 		assert.strictEqual(translatedColor('#ff0000', ColorTypes.hex6, ColorTypes.named), 'Red');
 	});
 
@@ -126,9 +122,9 @@ suite('translatedColor', () => {
 		assert.strictEqual(translatedColor('#ff00ff', ColorTypes.hex6, ColorTypes.named), 'Fuchsia');
 	});
 
-	test('hex8 with alpha flattens to hex6/rgb/hsl', () => {
+	test('hex8 with alpha flattens to hex6, preserves alpha in rgb/hsl', () => {
 		assert.strictEqual(translatedColor('#ff000080', ColorTypes.hex8, ColorTypes.hex6), '#ff7f7f');
-		assert.strictEqual(translatedColor('#ff000080', ColorTypes.hex8, ColorTypes.rgb), 'rgb(255 127 127)');
+		assert.strictEqual(translatedColor('#ff000080', ColorTypes.hex8, ColorTypes.rgb), 'rgb(255 0 0 / 50.2%)');
 	});
 
 	test('rgb to targets', () => {
@@ -138,10 +134,17 @@ suite('translatedColor', () => {
 		assert.strictEqual(translatedColor('rgb(255, 0, 0)', ColorTypes.rgb, ColorTypes.hex6), '#ff0000');
 	});
 
-	test('rgba with alpha flattens to non-alpha targets', () => {
-		assert.strictEqual(translatedColor('rgba(255 0 0 / 0.5)', ColorTypes.rgba, ColorTypes.hex6), '#ff7f7f');
-		assert.strictEqual(translatedColor('rgba(255 0 0 / 0.5)', ColorTypes.rgba, ColorTypes.rgb), 'rgb(255 127 127)');
-		assert.strictEqual(translatedColor('rgba(255 0 0 / 0.5)', ColorTypes.rgba, ColorTypes.hex8), '#ff000080');
+	test('rgb with alpha flattens to hex6, preserves alpha in rgb/hsl', () => {
+		assert.strictEqual(translatedColor('rgb(255 0 0 / 0.5)', ColorTypes.rgb, ColorTypes.hex6), '#ff7f7f');
+		assert.strictEqual(translatedColor('rgb(255 0 0 / 0.5)', ColorTypes.rgb, ColorTypes.hex8), '#ff000080');
+		assert.strictEqual(translatedColor('rgb(255 0 0 / 0.5)', ColorTypes.rgb, ColorTypes.hsl), 'hsl(0 100% 50% / 50%)');
+	});
+
+	test('normalizes legacy rgba/hsla aliases to canonical form', () => {
+		assert.strictEqual(translatedColor('rgba(255 0 0 / 0.5)', ColorTypes.rgb, ColorTypes.rgb), 'rgb(255 0 0 / 50%)');
+		assert.strictEqual(translatedColor('rgba(255, 0, 0, 1)', ColorTypes.rgb, ColorTypes.rgb), 'rgb(255 0 0)');
+		assert.strictEqual(translatedColor('hsla(0 100% 50% / 0.5)', ColorTypes.hsl, ColorTypes.hsl), 'hsl(0 100% 50% / 50%)');
+		assert.strictEqual(translatedColor('hsla(0, 100%, 50%, 1)', ColorTypes.hsl, ColorTypes.hsl), 'hsl(0 100% 50%)');
 	});
 
 	test('hsl to targets', () => {

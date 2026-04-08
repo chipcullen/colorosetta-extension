@@ -32,9 +32,7 @@
     "onCommand:colorosetta.toHex6",
     "onCommand:colorosetta.toHex8",
     "onCommand:colorosetta.toRgb",
-    "onCommand:colorosetta.toRgba",
     "onCommand:colorosetta.toHsl",
-    "onCommand:colorosetta.toHsla",
     "onCommand:colorosetta.toLch",
     "onCommand:colorosetta.toOklch",
     "onCommand:colorosetta.toP3",
@@ -69,20 +67,8 @@
           "when": "editorHasSelection"
         },
         {
-          "command": "colorosetta.toRgba",
-          "title": "Translate to RGBa",
-          "category": "ColoRosetta",
-          "when": "editorHasSelection"
-        },
-        {
           "command": "colorosetta.toHsl",
           "title": "Translate to HSL",
-          "category": "ColoRosetta",
-          "when": "editorHasSelection"
-        },
-        {
-          "command": "colorosetta.toHsla",
-          "title": "Translate to HSLa",
           "category": "ColoRosetta",
           "when": "editorHasSelection"
         },
@@ -137,20 +123,8 @@
           "when": "editorHasSelection"
         },
         {
-          "command": "colorosetta.toRgba",
-          "title": "Translate to RGBa",
-          "category": "ColoRosetta",
-          "when": "editorHasSelection"
-        },
-        {
           "command": "colorosetta.toHsl",
           "title": "Translate to HSL",
-          "category": "ColoRosetta",
-          "when": "editorHasSelection"
-        },
-        {
-          "command": "colorosetta.toHsla",
-          "title": "Translate to HSLa",
           "category": "ColoRosetta",
           "when": "editorHasSelection"
         },
@@ -202,18 +176,8 @@
         "category": "🎨 ColoRosetta"
       },
       {
-        "command": "colorosetta.toRgba",
-        "title": "Translate to RGBa",
-        "category": "🎨 ColoRosetta"
-      },
-      {
         "command": "colorosetta.toHsl",
         "title": "Translate to HSL",
-        "category": "🎨 ColoRosetta"
-      },
-      {
-        "command": "colorosetta.toHsla",
-        "title": "Translate to HSLa",
         "category": "🎨 ColoRosetta"
       },
       {

@@ -6,11 +6,12 @@ This VS Code extension brings the one-to-many color translations of https://colo
 
 ## Features
 
-- Translates selected text into 10 color formats: Hex (6), Hex (8), RGB, RGBa, HSL, HSLa, LCH, OKLCH, P3 and Named Colors
+- Translates selected text into 10 color formats: Hex (6), Hex (8), RGB, HSL, LCH, OKLCH, P3 and Named Colors
 - Can translate directly to each of those color formats.
   ![A color translated from the editor into nine color formats](/images/translating-directly-to-p3.gif)
   (If you choose named, and there is no matching named color, you get a warning instead.)
-- Note: if translating from a color space with an alpha channel (e.g. rgba) to one without an alpha channel (e.g. Hex 6), the translated color assumes a `#ffffff` background
+- `rgb` and `hsl` formats support the modern syntax with no commas, and the alpha channel after an optional `/` - e.g. `rgb(255, 255, 255 / 50%)`
+- Note: if translating from a color space with an alpha channel (e.g. modern rgb) to one without an alpha channel (e.g. Hex 6), the translated color assumes a `#ffffff` background
 
 ## Installation
 
