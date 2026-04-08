@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.0]
+
+- Consolidated `rgba` and `hsla` into the modern `rgb` and `hsl` formats
+
 ## [1.0.0]
 
 - Updated to be powered by [color.js](https://colorjs.io/)

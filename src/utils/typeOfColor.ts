@@ -12,14 +12,8 @@ const typeOfColor = (color: string): ColorTypes => {
     case /^(#)?[0-9A-F]{8}$/i.test(color):
       return ColorTypes.hex8;
 
-    case color.indexOf("rgba") === 0 && color.indexOf(")") !== -1:
-      return ColorTypes.rgba;
-
     case color.indexOf("rgb") === 0 && color.indexOf(")") !== -1:
       return ColorTypes.rgb;
-
-    case color.indexOf("hsla") === 0 && color.indexOf(")") !== -1:
-      return ColorTypes.hsla;
 
     case color.indexOf("hsl") === 0 && color.indexOf(")") !== -1:
       return ColorTypes.hsl;
